@@ -1,3 +1,5 @@
+import elementos.*
+
 class Plaga {
 
   var property poblacion
@@ -6,7 +8,16 @@ class Plaga {
     return 0
   }
 
-  method transmitenEnfermedades() = poblacion > 10
+  method transmiteEnfermedades() = poblacion >= 10
+
+  method efectoPorAtaque() {
+    poblacion += poblacion * 0.10
+  }
+
+  method atacaA(elemento) {
+    elemento.recibeAtaque(self)
+    self.efectoPorAtaque()
+  }
 
 }
 
@@ -16,7 +27,12 @@ class PlagaDeCucarachas inherits Plaga {
 
   override method nivelDeDanio() = poblacion / 2
 
-  override method transmitenEnfermedades() = super() and pesoPromedio > 10
+  override method transmiteEnfermedades() = super() and pesoPromedio > 10
+
+  override method efectoPorAtaque() {
+    super()
+    pesoPromedio += 2
+  }
 
 }
 
@@ -28,13 +44,17 @@ class PlagaDePulgas inherits Plaga {
 
 class PlagaDeGarrapata inherits PlagaDePulgas {
 
+  override method efectoPorAtaque() {
+    poblacion += poblacion * 0.20
+  }
+
 }
 
 class PlagaDeMosquitos inherits Plaga {
 
   override method nivelDeDanio() = poblacion
 
-  override method transmitenEnfermedades() = super() and (poblacion % 3 == 0)
+  override method transmiteEnfermedades() = super() and (poblacion % 3 == 0)
 
 }
 

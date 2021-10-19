@@ -1,6 +1,48 @@
+import plagas.*
 
-test "testX" {
+describe "Test de Plagas" {
 
-	assert.that(true)
+  const biciDePaseo = new Bici(rodado = 28, largo = 150, marca = "Olmo")
+  const biciDeEntrega = new Bici(rodado = 26, largo = 110, marca = "Legnano")
+  const canasto1 = new Canasto(volumen = 8)
+  const morral1 = new MorralDeBici(largo = 21, tieneOjoDeGato = true)
+  const biciDePeque = new Bici(rodado = 20, largo = 90, marca = "Legnano")
+  const morral2 = new MorralDeBici(largo = 6, tieneOjoDeGato = false)
+
+  method initialize() {
+    biciDePaseo.agregarAccesorio(farolito)
+    biciDeEntrega.agregarAccesorio(farolito)
+    biciDeEntrega.agregarAccesorio(canasto1)
+    biciDeEntrega.agregarAccesorio(morral1)
+    biciDePeque.agregarAccesorio(morral2)
+  }
+
+  test "Bici Rodado 28" {
+    assert.equals(85, biciDePaseo.altura())
+    assert.equals(34, biciDePaseo.velocidadCrucero())
+    assert.equals(0, biciDePaseo.carga())
+    assert.equals(14.5, biciDePaseo.peso())
+    assert.that(biciDePaseo.tieneLuz())
+    assert.equals(1, biciDePaseo.cantidadAccesoriosLivianos())
+  }
+
+  test "Bici Rodado 26" {
+    assert.equals(80, biciDeEntrega.altura())
+    assert.equals(28, biciDeEntrega.velocidadCrucero())
+    assert.equals(23, biciDeEntrega.carga())
+    assert.equals(15.5, biciDeEntrega.peso())
+    assert.that(biciDeEntrega.tieneLuz())
+    assert.equals(2, biciDeEntrega.cantidadAccesoriosLivianos())
+  }
+
+  test "Bici Rodado 20" {
+    assert.equals(65, biciDePeque.altura())
+    assert.equals(22, biciDePeque.velocidadCrucero())
+    assert.equals(2, biciDePeque.carga())
+    assert.equals(11.2, biciDePeque.peso())
+    assert.notThat(biciDePeque.tieneLuz())
+    assert.equals(0, biciDePeque.cantidadAccesoriosLivianos())
+  }
 
 }
+

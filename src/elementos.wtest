@@ -1,6 +1,42 @@
+import plagas.*
+import elementos.*
 
-test "testX" {
+describe "Test de Elementos" {
 
-	assert.that(true)
+  const hogar = new Hogar()
+  const huerta = new Huerta()
+  const mascota = new Mascota()
+  const barrio = new Barrio()
+
+  method initialize() {
+  }
+
+  test "Hogar" {
+    assert.equals(85, biciDePaseo.altura())
+    assert.equals(34, biciDePaseo.velocidadCrucero())
+    assert.equals(0, biciDePaseo.carga())
+    assert.equals(14.5, biciDePaseo.peso())
+    assert.that(biciDePaseo.tieneLuz())
+    assert.equals(1, biciDePaseo.cantidadAccesoriosLivianos())
+  }
+
+  test "Huerta" {
+    assert.equals(80, biciDeEntrega.altura())
+    assert.equals(28, biciDeEntrega.velocidadCrucero())
+    assert.equals(23, biciDeEntrega.carga())
+    assert.equals(15.5, biciDeEntrega.peso())
+    assert.that(biciDeEntrega.tieneLuz())
+    assert.equals(2, biciDeEntrega.cantidadAccesoriosLivianos())
+  }
+
+  test "Mascota" {
+    assert.equals(65, biciDePeque.altura())
+    assert.equals(22, biciDePeque.velocidadCrucero())
+    assert.equals(2, biciDePeque.carga())
+    assert.equals(11.2, biciDePeque.peso())
+    assert.notThat(biciDePeque.tieneLuz())
+    assert.equals(0, biciDePeque.cantidadAccesoriosLivianos())
+  }
 
 }
+
